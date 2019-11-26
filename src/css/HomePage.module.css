@@ -1,0 +1,78 @@
+
+
+@font-face{/*font*/
+	font-family: carbon;
+	src: url('font/carbon.ttf');
+}
+
+.ppic{
+   
+    position: relative;
+    width: 14%;
+    margin: 10px solid;
+    z-index: 2;
+    -webkit-transition: width 1s
+}
+
+.ppic:hover
+{
+	width:17%;
+	position: relative;
+    cursor: pointer;
+    border: none;
+    animation-delay: 2s;
+}
+
+
+/* 
+.ppic_click_open{
+    position: absolute;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    top: 65%;
+    left: 0;
+    right: 0%;
+	background-color: #202013;
+    color: white;
+    height:0.5%;
+} */
+
+.ppic_click_open{
+    position: absolute;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    top: 67%;
+    margin-top:6.5%;
+    left: 0;
+    right: 0%;
+	background-color: #202013;
+    color: white;
+    height:290%;
+
+}
+
+.hr1{
+    position: absolute;
+    width: 95%;
+    margin-top: 7.5%;
+}
+
+
+.heightToggle{
+    height:25%;
+}
+
+.main_container{
+    position: relative;
+    /* background-image: url('../resources/coffee_lover.jpg'); */
+    text-align: center!important;
+    font-family: carbon;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.marg_{
+    margin:25px;
+}

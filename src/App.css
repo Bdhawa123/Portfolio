@@ -1,3 +1,11 @@
+@font-face{/*font*/
+	font-family: carbon;
+	src: url('css/font/carbon.ttf');
+}
+
+div{
+  font-family: carbon;
+}
 .App {
   text-align: center;
 }
