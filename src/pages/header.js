@@ -6,22 +6,39 @@ import Home from './Home';
 import {Navbar,Nav} from 'react-bootstrap';
 import Image from "../resources/coffee_lover.jpg";
 import { Route,BrowserRouter, Switch} from 'react-router-dom';
+import navStyle from "../css/navigation.css";
+
 
 //import { url } from 'inspector';
 
 
+
 const Navigation = () =>{
     return(
-        <div>
-            <Navbar bg="dark" variant="dark">
+       
+    <div className="text-center" style={{paddingTop:'2%'}}>
+			<ul style={{listStyleType:'none', display:'inline-block'}}>
+                <Nav.Link href ="Home">Home</Nav.Link>
+                <Nav.Link href ="About">About</Nav.Link>
+                <Nav.Link href ="Photo">Gallery</Nav.Link>
+				
+					{/* <a href = # id = "firstjava"><li class = "shake"> Home</li>	</a>
+					<a href= "#"><li class = "shake"> Blog </li></a>	
+					<a href= "#"><li class = "shake"> Get to know me </li></a> */}
+			</ul>	
+              {/* <Navbar bg="dark" variant="dark">
                 <Navbar.Brand href="Home">Classic Euphemist</Navbar.Brand>
                 <Nav className="ml-auto">
                     <Nav.Link href ="Home">Home</Nav.Link>
                     <Nav.Link href ="About">About</Nav.Link>
                     <Nav.Link href ="Photo">Gallery</Nav.Link>
                 </Nav>
-            </Navbar>
-        </div>);
+            </Navbar> */}
+		</div>
+
+
+          
+      );
 }
 
 class HeaderComponent extends Component{
@@ -33,6 +50,7 @@ class HeaderComponent extends Component{
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
     }
+
     
   
    

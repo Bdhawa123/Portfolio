@@ -5,6 +5,20 @@
 	src: url('font/carbon.ttf');
 }
 
+.logo{
+    width: 5%;
+    position: relative;
+    -webkit-transition: width 1s;
+    z-index: 2;
+
+}
+
+.logo:hover{
+    width: 6%;
+    position: relative;
+    cursor: pointer;
+}
+
 .ppic{
    
     position: relative;
@@ -50,6 +64,7 @@
 	background-color: #202013;
     color: white;
     height:290%;
+    z-index: 1;
 
 }
 
