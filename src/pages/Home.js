@@ -3,25 +3,21 @@ import {Container,Image} from 'react-bootstrap';
 import HomePageCss from '../css/HomePage.module.css';
 import Fade from 'react-reveal/Fade';
 
-const Repo = async()=>{
-    let RepoList;
-    fetch('https://api.github.com/users/Bdhawa123/repos')
-    .then((resp)=>resp.json())
-    .then((data)=>{
-        console.log(data);
-    });
-    return RepoList;
 
-}
 const GitRepo =(props) =>{
     const repoList = props.name;
     const repoJSON = repoList[0];
     
+    const gitredirect = (url)=>{
+        window.location.href=url;
+    }
     return(
     <div>
        {repoList.map((val,index)=>(
-            <div key ={index}>
-                <Image src={require("../resources/folder.png")} style={{clear:' both', lineHeight:'0',width:'10%'}}/>
+            <div key ={index} style={{display:'inline-block'}}>
+                <Image src={require("../resources/folder.png")} style={{width:'55%',marginLeft:'5%'}} onClick={()=>gitredirect(val.html_url)} /><br>
+                </br>
+                <span>{val.name}</span>
             </div>
        ))}
     </div>
@@ -100,7 +96,7 @@ class Home extends Component{
                                     <div className="row">
 
                                         <div className="col-lg-6 col-md-6 col-12-xs col-12-s" style={{left:'25px'}}  >
-                                            <div className="Red text-left" >
+                                            <div className="Red text-left" style={{backgroundColor:'#8b949e',opacity:'0.9',color:'light-blue',paddingTop:'11px'}}>
                                                     <h2>EDUCATION</h2>
                                                     <div style={{marginBottom:'50px'}}></div>
                                                 
@@ -120,7 +116,8 @@ class Home extends Component{
                                             </div>
 
                                             <div className="col-lg-6 col-md-6 col-12-xs col-12-s" >
-                                                <h2>A BIT ABOUT MYSELF</h2>   
+                                                <h2>A BIT ABOUT MYSELF</h2> 
+                                                <span>I'm awesome !!!</span>  
                                             </div>
                                     </div>
                                 </div>
@@ -139,7 +136,6 @@ class Home extends Component{
                         <h3 className ="bold"> Projects</h3>
                         
                         <div style={{border:'1px solid black'}}>
-                            React API (repositories)
                             <GitRepo name={this.state.GitHubData}/>
                         </div>
 
