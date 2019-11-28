@@ -3,7 +3,7 @@ import {Container,Image} from 'react-bootstrap';
 import HomePageCss from '../css/HomePage.module.css';
 import Fade from 'react-reveal/Fade';
 
-const Repo = ()=>{
+const Repo = async()=>{
     let RepoList;
     fetch('https://api.github.com/users/Bdhawa123/repos')
     .then((resp)=>resp.json())
@@ -16,17 +16,14 @@ const Repo = ()=>{
 const GitRepo =(props) =>{
     const repoList = props.name;
     const repoJSON = repoList[0];
-    // console.log(repoJSON.values(repoJSON))
-    console.log(typeof(repoJSON))
-    //console.log(Object.keys(repoJSON));
-    // for(const k in Object.values(repoJSON)){
-    //     console.log(k)
-    // }
-   
-   
+    
     return(
     <div>
-       
+       {repoList.map((val,index)=>(
+            <div key ={index}>
+                <Image src={require("../resources/folder.png")} style={{clear:' both', lineHeight:'0',width:'10%'}}/>
+            </div>
+       ))}
     </div>
     );
 }
@@ -63,12 +60,13 @@ class Home extends Component{
        }
     }
 
-    getGitData =()=>{
-        fetch('https://api.github.com/users/Bdhawa123/repos')
+    getGitData =async()=>{
+        await fetch('https://api.github.com/users/Bdhawa123/repos')
         .then((resp)=>resp.json())
         .then((data)=>{
+            console.log(data);
             this.setState({GitHubData:data});
-    });
+        });
     }
 
    
