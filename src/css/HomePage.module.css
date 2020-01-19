@@ -91,3 +91,8 @@
 .marg_{
     margin:25px;
 }
+
+
+.code_image{
+    position: relative;
+}

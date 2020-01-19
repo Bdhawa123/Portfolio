@@ -2,25 +2,71 @@ import React,{ Component} from 'react';
 import {Container,Image} from 'react-bootstrap';
 import HomePageCss from '../css/HomePage.module.css';
 import Fade from 'react-reveal/Fade';
+import codeImg from "../resources/program.jpg";
+
 
 
 const GitRepo =(props) =>{
     const repoList = props.name;
-    const repoJSON = repoList[0];
-    
-    const gitredirect = (url)=>{
-        window.location.href=url;
-    }
+
     return(
     <div>
        {repoList.map((val,index)=>(
-            <div key ={index} style={{display:'inline-block'}}>
-                <Image src={require("../resources/folder.png")} style={{width:'55%',marginLeft:'5%'}} onClick={()=>gitredirect(val.html_url)} /><br>
+            <div key ={index} style={{display:'inline-block',zIndex:'2'}}>
+                <Image src={require("../resources/folder.png")} style={{width:'55%',marginLeft:'5%',cursor:'pointer'}} onClick={()=>window.location.href=val.html_url}  /><br>
                 </br>
                 <span>{val.name}</span>
             </div>
        ))}
     </div>
+    );
+}
+
+const SkillSet =()=>{
+
+    const Technical={
+        Language:['Java','.Net','C','php','Javascript','Python'],
+        Version_Control:['GitBash','Source-Tree'],
+        Database:['MongoDB','SQL','MySQL','Data Normalization','Entity Relation Design and Modelling'],
+        Web_Development:['JavaScript','NodeJs','JQuery','JSF server Technology','J2EE','React','Bootstrap','Java'],
+        IDE:['Eclipse','VS-Code','Visual Studio','Android Studio','NetBeans'],
+        Project_Management:['Scrum','Waterfall','Risk Management and Report'],
+        UI_Development_and_Design:['User-Centred Design','Software Quality','Usablity Design','Itertative prototyping'],
+        Internet_Of_Things:['Raspberry pi','Arduino','Circuit building and device deployment'],
+   }
+
+    const Experience={
+
+    }
+    for(let s in Technical){
+           console.log(s+Technical[s]);     
+    }
+
+    return(
+        <div  style={{position:'relative',backgroundPosition:'center',backgroundSize:'100%', backgroundAttachment:'fixed', backgroundImage:`url(${codeImg})`,color:'white'}} >
+             
+            
+            <h4 className="text-center" style={{padding:'5%'}}>
+                My current Skill set<br></br>
+            </h4>
+                {Object.keys(Technical).map((heading,index)=>(
+                <div key ={index} style={{zIndex:'2',paddingBottom:'3%'}}>
+                    <h5>{heading}</h5>
+                    {/* <span>{console.log(Technical[val])}</span> */}
+                    <span>
+                        {
+                            Object.keys(Technical[heading]).map((value,index)=>(
+                                <span key={index} style={{paddingLeft:'1%'}}>
+                                    {Technical[heading][value]}
+                                </span>
+                            ))}               
+                    </span>
+                    <br></br>
+                </div>
+                 ))}   
+       </div>  
+                   
+       
     );
 }
 
@@ -32,6 +78,8 @@ class Home extends Component{
         Scroll:false,
         GitHubData:[],
     }
+
+    
 
     margin_ = {
         margin:'5px',
@@ -127,12 +175,12 @@ class Home extends Component{
                         <div className ="text-center"  >
                             <h3>Find Me On LinkedIn and GitHub</h3>    
                             
-				        	<Image className={HomePageCss['logo']} onClick={()=>window.location.href="https://www.linkedin.com/in/binay-dhawa-8b212b34/"} src={require("../resources/github_logo.png")} roundedCircle />
-                            	<Image className={HomePageCss['logo']} onClick={()=>window.location.href="https://github.com/Bdhawa123"} src={require("../resources/LinkedIn.png")} roundedCircle />
+				        	<Image className={HomePageCss['logo']} onClick={()=>window.location.href="https://www.linkedin.com/in/binay-dhawa-8b212b34/"} src={require("../resources/LinkedIn.png")} roundedCircle />
+                            	<Image className={HomePageCss['logo']} onClick={()=>window.location.href="https://github.com/Bdhawa123"} src={require("../resources/github_logo.png")} roundedCircle />
                         </div>
                         
 
-                    <div className = "text-center" style={{paddingTop:'20%'}}>
+                    <div className = "text-center" style={{paddingTop:'20%',marginBottom:'25%'}}>
                         <h3 className ="bold"> Projects</h3>
                         
                         <div style={{border:'1px solid black'}}>
@@ -141,6 +189,8 @@ class Home extends Component{
 
                     </div>
 
+                   
+                    <SkillSet/>
                 </Container>
             
 

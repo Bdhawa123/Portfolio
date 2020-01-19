@@ -19,7 +19,7 @@ const Navigation = () =>{
     <div className="text-center" style={{paddingTop:'2%'}}>
 			<ul style={{listStyleType:'none', display:'inline-block'}}>
                 <Nav.Link href ="Home">Home</Nav.Link>
-                <Nav.Link href ="About">About</Nav.Link>
+                <Nav.Link href ="About">Blog</Nav.Link>
                 <Nav.Link href ="Photo">Gallery</Nav.Link>
 				
 					{/* <a href = # id = "firstjava"><li class = "shake"> Home</li>	</a>
