@@ -2,18 +2,20 @@ import React,{ Component} from 'react';
 import {Container,Image} from 'react-bootstrap';
 import HomePageCss from '../css/HomePage.module.css';
 import Fade from 'react-reveal/Fade';
+import {Modal, ModalHeader} from 'reactstrap';
 import codeImg from "../resources/program.jpg";
 
 
 
 const GitRepo =(props) =>{
+  
     const repoList = props.name;
-
+    
     return(
     <div>
        {repoList.map((val,index)=>(
-            <div key ={index} style={{display:'inline-block',zIndex:'2'}}>
-                <Image src={require("../resources/folder.png")} style={{width:'55%',marginLeft:'5%',cursor:'pointer'}} onClick={()=>window.location.href=val.html_url}  /><br>
+            <div key ={index} style={{display:'inline-block',zIndex:'2'}} >
+                <Image src={require("../resources/folder.png")} style={{width:'55%',marginLeft:'5%',cursor:'pointer'}} onClick={()=>window.location.href=val.html_url} onMouseEnter={()=>{props.togglehover(true,val.name)}} onMouseLeave={()=>{setTimeout(()=>{props.togglehover(false)},1500)}}/><br>
                 </br>
                 <span>{val.name}</span>
             </div>
@@ -43,20 +45,22 @@ const SkillSet =()=>{
     }
 
     return(
-        <div  style={{position:'relative',backgroundPosition:'center',backgroundSize:'100%', backgroundAttachment:'fixed', backgroundImage:`url(${codeImg})`,color:'white'}} >
+        <div  style={{position:'relative',backgroundPosition:'center',backgroundSize:'100%', backgroundAttachment:'fixed',color:'black'}} >
              
             
-            <h4 className="text-center" style={{padding:'5%'}}>
-                My current Skill set<br></br>
-            </h4>
+            <div className="text-center">
+                <h4 className="btn btn-warning disabled " style={{color:'black',opacity:'1',borderRadius:'25px', fontSize:'25px',marginBottom:'5%'}}>
+                    My current Skill set<br></br>
+                </h4>
+            </div>
                 {Object.keys(Technical).map((heading,index)=>(
                 <div key ={index} style={{zIndex:'2',paddingBottom:'3%'}}>
-                    <h5>{heading}</h5>
+                    <h5 className="btn btn-warning disabled" style={{color:'black',opacity:'0.7',borderRadius:'25px', fontSize:'20px'}}>{heading}</h5><br></br>
                     {/* <span>{console.log(Technical[val])}</span> */}
                     <span>
                         {
                             Object.keys(Technical[heading]).map((value,index)=>(
-                                <span key={index} style={{paddingLeft:'1%'}}>
+                                <span key={index} className ="btn btn-dark disabled" style={{marginLeft:'1%',color:'white',opacity:'1',borderRadius:'25px'}}>
                                     {Technical[heading][value]}
                                 </span>
                             ))}               
@@ -71,12 +75,33 @@ const SkillSet =()=>{
 }
 
 
+const ReactModal=(props)=>{
+
+    return(
+        
+            <Modal isOpen= {props.open}>
+               
+                {/* <ModalHeader>This is a simple modal</ModalHeader> */}
+                Just a simple Modal<br></br>
+                {props.message2modal}
+            </Modal>
+    );
+}
+
+
 class Home extends Component{
+
+    constructor(props){
+        super(props);
+        this.togglehover= this.togglehover.bind(this);
+    }
 
     state ={
         triggerevent:false,
         Scroll:false,
         GitHubData:[],
+        hover_repo:false,
+        hover_message:""
     }
 
     
@@ -87,7 +112,7 @@ class Home extends Component{
     
     componentDidMount= function() {
         window.addEventListener('scroll', this.handleScroll);
-        this.getGitData();
+        this.getGitData();                              //get Github data
     }
     
     componentWillUnmount= function() {
@@ -109,7 +134,7 @@ class Home extends Component{
         .then((resp)=>resp.json())
         .then((data)=>{
             console.log(data);
-            this.setState({GitHubData:data});
+            this.setState({GitHubData:data});                   //fetch data from Github and post it to the state Github Data
         });
     }
 
@@ -124,10 +149,21 @@ class Home extends Component{
        console.log("Scroll event");
     }
 
+    togglehover=(isModalOpen,name)=>{
+        this.setState({hover_repo:isModalOpen});
+        if(name!=null){
+            this.setState({hover_message:name});
+        }
+        
+    }
+
+    
+
     
     render(){
         return(
              <Container >
+               
                         <div className={HomePageCss['main_container']} onscroll={this.ScrollHandler}  >
                         
                             <Fade cascade when ={!this.state.triggerevent} timeout='1500'>
@@ -179,18 +215,29 @@ class Home extends Component{
                             	<Image className={HomePageCss['logo']} onClick={()=>window.location.href="https://github.com/Bdhawa123"} src={require("../resources/github_logo.png")} roundedCircle />
                         </div>
                         
+                     {/* {this.state.hover_repo?<ReactModal message2modal={this.state.hover_message}/>:null} */}
+                        {/* <Modal isOpen={this.state.hover_repo}>
+                            <div>
+                                {this.state.hover_message}
+                            </div>
+                        </Modal> */}
 
                     <div className = "text-center" style={{paddingTop:'20%',marginBottom:'25%'}}>
                         <h3 className ="bold"> Projects</h3>
                         
                         <div style={{border:'1px solid black'}}>
-                            <GitRepo name={this.state.GitHubData}/>
+                            <GitRepo name={this.state.GitHubData} togglehover={this.togglehover} val/>
                         </div>
 
                     </div>
 
                    
                     <SkillSet/>
+
+                    <ReactModal message2modal={this.state.hover_message} open={this.state.hover_repo}/>
+
+                   
+                    
                 </Container>
             
 
