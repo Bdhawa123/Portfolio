@@ -1,22 +1,44 @@
-import React,{ Component} from 'react';
+import React,{ Component, useRef, useState, useEffect} from 'react';
 import {Container,Image} from 'react-bootstrap';
 import HomePageCss from '../css/HomePage.module.css';
 import Fade from 'react-reveal/Fade';
-import {Modal, ModalHeader} from 'reactstrap';
+import {Modal, ModalHeader, ModalBody, ModalFooter, button} from 'reactstrap';
+import ReactHover from 'react-hover';
 import codeImg from "../resources/program.jpg";
 
 
 
 const GitRepo =(props) =>{
-  
-    const repoList = props.name;
+
+    const repoList = props.name
+
+    let mouseent = (val)=>{
+        let startTime = new Date();
+        setTimeout(
+            ()=>{
+                let endTime = new Date()
+                let timediff = (endTime- startTime)/1000;
+                if(timediff>=0.5){
+                    props.togglehover(true,val.id)
+                   console.log('a second has passed')
+                   
+                }
+        },500)    
+        //onMouseEnter={()=>{props.togglehover(true,val.id)}}    
+    }
+    
+
     
     return(
     <div>
        {repoList.map((val,index)=>(
             <div key ={index} style={{display:'inline-block',zIndex:'2'}} >
-                <Image src={require("../resources/folder.png")} style={{width:'55%',marginLeft:'5%',cursor:'pointer'}} onClick={()=>window.location.href=val.html_url} onMouseEnter={()=>{props.togglehover(true,val.name)}} onMouseLeave={()=>{setTimeout(()=>{props.togglehover(false)},1500)}}/><br>
-                </br>
+                <div>
+                    
+                    <Image src={require("../resources/folder.png")} style={{width:'55%',marginLeft:'5%',cursor:'pointer'}} onClick={()=>{props.openproject(val.id,true)}} />
+                    
+                </div>
+                
                 <span>{val.name}</span>
             </div>
        ))}
@@ -41,7 +63,7 @@ const SkillSet =()=>{
 
     }
     for(let s in Technical){
-           console.log(s+Technical[s]);     
+           //console.log(s+Technical[s]);     
     }
 
     return(
@@ -76,15 +98,38 @@ const SkillSet =()=>{
 
 
 const ReactModal=(props)=>{
+    console.log(props.message2modal);
+    
+    const Data={
+        184210862:['A personal project for coursework on Internet of Things','Used Arduino and a raspberry pi to create a light bulb that glows on and off in response to proximity sensor, the device has applications in home security ','C, python,','imagesource'],
+        189182699:['A Group project for coursework on Internet of Things','Used Arduino and a raspberry pi to create a game where sounds were used to create random notes and guesses were made by user through remote to note the user success and failure and shown on a website hosted on raspberry pi 3','C, python,','imagesource'],
+        206076459:['An assignment for coursework advanced java, using buffers to read through document to find repeated keywords','Used Arduino and a raspberry pi to create a game where sounds were used to create random notes and guesses were made by user through remote to note the user success and failure and shown on a website hosted on raspberry pi 3','C, python,','imagesource'],
+        40567:['A GUI equipped Java Keyword for searching and visualizing data','Advancement from Java Keyword assignment, this project uses mvc framework and java fx for visualizing top keyword in the selected document, the user provides keyword and top co-occuring keywords are listed','Java, Java FX, mvc','screenshots'],
+        213589674:['A personal portfolio project','','JavaScript, ReactJS','screenshot'],
+        222364953:['A project done from coursework in coursera.org','Created a website for a restaurant utilising react and redux framework','React, JavaScript, HTML5','screenshot'],
+        193052482:['Advancing in react project ','Practises and different concept practises gained from Researcha and Dev','React, JavaScript, Node JS','screenshot'],
+        174096793:['Final year Project at Swinburne','created a web application utilising leaflet maps, javascript and PHP for clients to upload data to Nectar cloud and visualized in maps','PHP, JavaScript, Nectar Cloud','screenshot'],
+   }
 
+   let data = parseInt(props.message2modal);
+   let obj = Data[data];
+   let togglefunction = props.openproject;
+   
     return(
-        
-            <Modal isOpen= {props.open}>
-               
-                {/* <ModalHeader>This is a simple modal</ModalHeader> */}
-                Just a simple Modal<br></br>
-                {props.message2modal}
+        <div>
+            <button type="button" class="close" data-dismiss="modal" onClick={()=>{togglefunction(null,false); alert('write');}}>Close</button>
+            <Modal isOpen={props.triggerevent}>
+                <ModalHeader toggle ={togglefunction}>Modal title</ModalHeader>
+                {/* <ModalHeader>{props.message2modal}</ModalHeader> */}
+                {(obj==undefined)?null:
+                    <ModalBody>
+                        {obj}
+                    </ModalBody>
+                }
+
             </Modal>
+        </div>
+       
     );
 }
 
@@ -93,15 +138,17 @@ class Home extends Component{
 
     constructor(props){
         super(props);
-        this.togglehover= this.togglehover.bind(this);
+        // this.myRef = Rea
+        //this.togglehover= this.togglehover.bind(this);
+        this.open_prj_infohandler = this.open_prj_infohandler.bind(this);
     }
 
     state ={
         triggerevent:false,
         Scroll:false,
         GitHubData:[],
-        hover_repo:false,
-        hover_message:""
+        open_prj_info:false,
+        open_prj_id:""
     }
 
     
@@ -148,6 +195,18 @@ class Home extends Component{
     ScrollHandler=()=>{
        console.log("Scroll event");
     }
+
+
+    //handler to open info about projects
+    open_prj_infohandler = (id,boolval)=>{
+        this.setState({open_prj_info:boolval});
+        this.setState({open_prj_id:id});
+        console.log("Open project handler called");
+        console.log(this.state.open_prj_info);
+        console.log(id);
+    }
+
+    
 
     togglehover=(isModalOpen,name)=>{
         this.setState({hover_repo:isModalOpen});
@@ -226,18 +285,18 @@ class Home extends Component{
                         <h3 className ="bold"> Projects</h3>
                         
                         <div style={{border:'1px solid black'}}>
-                            <GitRepo name={this.state.GitHubData} togglehover={this.togglehover} val/>
+                            <GitRepo name={this.state.GitHubData} openproject={this.open_prj_infohandler} val/>
                         </div>
 
                     </div>
 
                    
                     <SkillSet/>
-
-                    <ReactModal message2modal={this.state.hover_message} open={this.state.hover_repo}/>
-
-                   
                     
+                    
+                    <Fade when={this.state.open_prj_info}> 
+                        <ReactModal message2modal={this.state.open_prj_id} triggerevent={this.state.open_prj_info} gitData ={this.state.GitHubData} openproject={this.open_prj_infohandler}/>
+                    </Fade>
                 </Container>
             
 
