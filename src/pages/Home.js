@@ -2,8 +2,8 @@ import React,{ Component, useRef, useState, useEffect} from 'react';
 import {Container,Image} from 'react-bootstrap';
 import HomePageCss from '../css/HomePage.module.css';
 import Fade from 'react-reveal/Fade';
-import {Modal, ModalHeader, ModalBody, ModalFooter, button} from 'reactstrap';
-import ReactHover from 'react-hover';
+import {Modal, ModalHeader, ModalBody} from 'reactstrap';
+import Carousel, { Dots } from '@brainhubeu/react-carousel';
 import codeImg from "../resources/program.jpg";
 
 
@@ -34,9 +34,7 @@ const GitRepo =(props) =>{
        {repoList.map((val,index)=>(
             <div key ={index} style={{display:'inline-block',zIndex:'2'}} >
                 <div>
-                    
                     <Image src={require("../resources/folder.png")} style={{width:'55%',marginLeft:'5%',cursor:'pointer'}} onClick={()=>{props.openproject(val.id,true)}} />
-                    
                 </div>
                 
                 <span>{val.name}</span>
@@ -76,12 +74,12 @@ const SkillSet =()=>{
                 </h4>
             </div>
                 {Object.keys(Technical).map((heading,index)=>(
+
                 <div key ={index} style={{zIndex:'2',paddingBottom:'3%'}}>
                     <h5 className="btn btn-warning disabled" style={{color:'black',opacity:'0.7',borderRadius:'25px', fontSize:'20px'}}>{heading}</h5><br></br>
                     {/* <span>{console.log(Technical[val])}</span> */}
                     <span>
-                        {
-                            Object.keys(Technical[heading]).map((value,index)=>(
+                        {Object.keys(Technical[heading]).map((value,index)=>(
                                 <span key={index} className ="btn btn-dark disabled" style={{marginLeft:'1%',color:'white',opacity:'1',borderRadius:'25px'}}>
                                     {Technical[heading][value]}
                                 </span>
@@ -101,33 +99,97 @@ const ReactModal=(props)=>{
     console.log(props.message2modal);
     
     const Data={
-        184210862:['A personal project for coursework on Internet of Things','Used Arduino and a raspberry pi to create a light bulb that glows on and off in response to proximity sensor, the device has applications in home security ','C, python,','imagesource'],
-        189182699:['A Group project for coursework on Internet of Things','Used Arduino and a raspberry pi to create a game where sounds were used to create random notes and guesses were made by user through remote to note the user success and failure and shown on a website hosted on raspberry pi 3','C, python,','imagesource'],
-        206076459:['An assignment for coursework advanced java, using buffers to read through document to find repeated keywords','Used Arduino and a raspberry pi to create a game where sounds were used to create random notes and guesses were made by user through remote to note the user success and failure and shown on a website hosted on raspberry pi 3','C, python,','imagesource'],
-        40567:['A GUI equipped Java Keyword for searching and visualizing data','Advancement from Java Keyword assignment, this project uses mvc framework and java fx for visualizing top keyword in the selected document, the user provides keyword and top co-occuring keywords are listed','Java, Java FX, mvc','screenshots'],
-        213589674:['A personal portfolio project','','JavaScript, ReactJS','screenshot'],
-        222364953:['A project done from coursework in coursera.org','Created a website for a restaurant utilising react and redux framework','React, JavaScript, HTML5','screenshot'],
-        193052482:['Advancing in react project ','Practises and different concept practises gained from Researcha and Dev','React, JavaScript, Node JS','screenshot'],
-        174096793:['Final year Project at Swinburne','created a web application utilising leaflet maps, javascript and PHP for clients to upload data to Nectar cloud and visualized in maps','PHP, JavaScript, Nectar Cloud','screenshot'],
+        184210862:['A personal project for coursework on Internet of Things','Used Arduino and a raspberry pi to create a light bulb that glows on and off in response to proximity sensor, the device has applications in home security ','C, python,','projects/IOT'],
+        189182699:['A Group project for coursework on Internet of Things','Used Arduino and a raspberry pi to create a game where sounds were used to create random notes and guesses were made by user through remote to note the user success and failure and shown on a website hosted on raspberry pi 3','C, python,','projects/IOT_G'],
+        206076459:['An assignment for coursework advanced java, using buffers to read through document to find repeated keywords','Used Arduino and a raspberry pi to create a game where sounds were used to create random notes and guesses were made by user through remote to note the user success and failure and shown on a website hosted on raspberry pi 3','C, python,','projects/Java_Keyword'],
+        40567:['A GUI equipped Java Keyword for searching and visualizing data','Advancement from Java Keyword assignment, this project uses mvc framework and java fx for visualizing top keyword in the selected document, the user provides keyword and top co-occuring keywords are listed','Java, Java FX, mvc','projects/Java_Keyword_Search'],
+        213589674:['A personal portfolio project','','JavaScript, ReactJS','projects/Java_Keyword'],
+        222364953:['A project done from coursework in coursera.org','Created a website for a restaurant utilising react and redux framework','React, JavaScript, HTML5','null'],
+        193052482:['Advancing in react project ','Practises and different concept practises gained from Researcha and Dev','React, JavaScript, Node JS','projects/react-tute'],
+        174096793:['Final year Project at Swinburne','created a web application utilising leaflet maps, javascript and PHP for clients to upload data to Nectar cloud and visualized in maps','PHP, JavaScript, Nectar Cloud','screenshot','projects/SDP'],
+   }
+
+   const slides =(name)=>{
+        console.log("Slides")
+        console.log(props.APIData);
+
+        let Slides = [];
+    
+        Object.keys(props.APIData).map((folder)=>{
+           
+            if(folder==name){
+                console.log('Folderchosen'+folder)
+                let folderitems = [];
+                folderitems.key=folder;
+                let Imagenames = props.APIData[folder];
+            
+                Imagenames.map((value)=>{
+                    value = 'http://localhost:3002/projects/'+folder+'/'+value;
+                    //folderitems.push(value);
+                    Slides.push(value)
+                })
+                //Slides.push(folderitems);
+            }
+            
+        });
+
+        console.log(Slides);
+        return Slides;
+   }
+
+   let slides_continue =()=>{
+       let sld_htm = [];
+
+       slides(returndat()).forEach((value,index)=>(
+
+        sld_htm.push(<img key={index+1} src ={value}/>)
+   ))
+        return sld_htm;
    }
 
    let data = parseInt(props.message2modal);
    let obj = Data[data];
    let togglefunction = props.openproject;
+   let git = props.gitData;
+
+   let returndat =()=>{
+        let TitleName=null 
+        git.map((val,index)=>{
+            if (val.id==data){
+                TitleName= val.name     
+            }
+         })
+         //temporary
+        return TitleName;
+   }
+
+
+
+   let head = "http://localhost:3002/folder.png";
    
     return(
         <div>
-            <button type="button" class="close" data-dismiss="modal" onClick={()=>{togglefunction(null,false); alert('write');}}>Close</button>
+            <div>{slides}</div>
+            {(obj==undefined)?null:
             <Modal isOpen={props.triggerevent}>
-                <ModalHeader toggle ={togglefunction}>Modal title</ModalHeader>
-                {/* <ModalHeader>{props.message2modal}</ModalHeader> */}
-                {(obj==undefined)?null:
-                    <ModalBody>
-                        {obj}
-                    </ModalBody>
-                }
 
-            </Modal>
+                <ModalHeader className= "d-block">
+                    <h3 style={{margin:0,float:'left'}}>{returndat()}</h3> 
+                    <button style ={{float:'right'}}type="button" class="close" data-dismiss="modal" aria-label="lose" onClick={()=>{togglefunction(null,false);}}>x</button> 
+                </ModalHeader>
+                
+
+
+                <ModalBody>
+                   <Carousel slides ={slides_continue()}>
+                       {/* <img src="http://localhost:3002/folder.png"/>
+                       <img src="http://localhost:3002/folder.png"/>
+                       <img src="http://localhost:3002/folder.png"/> */}
+                   </Carousel>
+
+                </ModalBody>
+
+            </Modal>}
         </div>
        
     );
@@ -147,6 +209,7 @@ class Home extends Component{
         triggerevent:false,
         Scroll:false,
         GitHubData:[],
+        APIData:[],
         open_prj_info:false,
         open_prj_id:""
     }
@@ -160,6 +223,7 @@ class Home extends Component{
     componentDidMount= function() {
         window.addEventListener('scroll', this.handleScroll);
         this.getGitData();                              //get Github data
+        this.getAPIData();
     }
     
     componentWillUnmount= function() {
@@ -180,9 +244,32 @@ class Home extends Component{
         await fetch('https://api.github.com/users/Bdhawa123/repos')
         .then((resp)=>resp.json())
         .then((data)=>{
-            console.log(data);
             this.setState({GitHubData:data});                   //fetch data from Github and post it to the state Github Data
         });
+    }
+
+
+    getAPIData = async()=>{
+        console.log("3002 localhost data");
+        await fetch('http://localhost:3002',{
+            method:'GET',
+            mode:'cors',
+           header:{
+               'Content-Type':'application/json'
+           },
+        })
+        .then((response)=>{
+            console.log('response loaded')
+            console.log(response.data);
+            response.json().then((data)=>{
+                console.log('Datafile hosted locations')
+                console.log(data);
+                this.setState({APIData:data})
+            })
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
     }
 
    
@@ -212,17 +299,12 @@ class Home extends Component{
         this.setState({hover_repo:isModalOpen});
         if(name!=null){
             this.setState({hover_message:name});
-        }
-        
+        }    
     }
 
-    
-
-    
     render(){
         return(
-             <Container >
-               
+             <Container >          
                         <div className={HomePageCss['main_container']} onscroll={this.ScrollHandler}  >
                         
                             <Fade cascade when ={!this.state.triggerevent} timeout='1500'>
@@ -273,13 +355,7 @@ class Home extends Component{
 				        	<Image className={HomePageCss['logo']} onClick={()=>window.location.href="https://www.linkedin.com/in/binay-dhawa-8b212b34/"} src={require("../resources/LinkedIn.png")} roundedCircle />
                             	<Image className={HomePageCss['logo']} onClick={()=>window.location.href="https://github.com/Bdhawa123"} src={require("../resources/github_logo.png")} roundedCircle />
                         </div>
-                        
-                     {/* {this.state.hover_repo?<ReactModal message2modal={this.state.hover_message}/>:null} */}
-                        {/* <Modal isOpen={this.state.hover_repo}>
-                            <div>
-                                {this.state.hover_message}
-                            </div>
-                        </Modal> */}
+                    
 
                     <div className = "text-center" style={{paddingTop:'20%',marginBottom:'25%'}}>
                         <h3 className ="bold"> Projects</h3>
@@ -293,11 +369,13 @@ class Home extends Component{
                    
                     <SkillSet/>
                     
+                    <ReactModal message2modal={this.state.open_prj_id} triggerevent={this.state.open_prj_info} APIData ={this.state.APIData} openproject={this.open_prj_infohandler} gitData = {this.state.GitHubData}/>
+                    {/*-----form to accept emails and requests -----*/}
+
                     
-                    <Fade when={this.state.open_prj_info}> 
-                        <ReactModal message2modal={this.state.open_prj_id} triggerevent={this.state.open_prj_info} gitData ={this.state.GitHubData} openproject={this.open_prj_infohandler}/>
-                    </Fade>
-                </Container>
+                    {/*-----About Page -----*/}
+                    
+            </Container>
             
 
         );
