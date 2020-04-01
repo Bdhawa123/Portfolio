@@ -4,6 +4,7 @@ import HomePageCss from '../css/HomePage.module.css';
 import Fade from 'react-reveal/Fade';
 import {Modal, ModalHeader, ModalBody} from 'reactstrap';
 import Carousel, { Dots } from '@brainhubeu/react-carousel';
+import '@brainhubeu/react-carousel/lib/style.css';
 import codeImg from "../resources/program.jpg";
 
 
@@ -104,11 +105,11 @@ const ReactModal=(props)=>{
         206076459:['An assignment for coursework advanced java, using buffers to read through document to find repeated keywords','Used Arduino and a raspberry pi to create a game where sounds were used to create random notes and guesses were made by user through remote to note the user success and failure and shown on a website hosted on raspberry pi 3','C, python,','projects/Java_Keyword'],
         40567:['A GUI equipped Java Keyword for searching and visualizing data','Advancement from Java Keyword assignment, this project uses mvc framework and java fx for visualizing top keyword in the selected document, the user provides keyword and top co-occuring keywords are listed','Java, Java FX, mvc','projects/Java_Keyword_Search'],
         213589674:['A personal portfolio project','','JavaScript, ReactJS','projects/Java_Keyword'],
-        222364953:['A project done from coursework in coursera.org','Created a website for a restaurant utilising react and redux framework','React, JavaScript, HTML5','null'],
+        163469163:['A project done from coursework in coursera.org','Created a website for a restaurant utilising react and redux framework','React, JavaScript, HTML5','null'],
         193052482:['Advancing in react project ','Practises and different concept practises gained from Researcha and Dev','React, JavaScript, Node JS','projects/react-tute'],
         174096793:['Final year Project at Swinburne','created a web application utilising leaflet maps, javascript and PHP for clients to upload data to Nectar cloud and visualized in maps','PHP, JavaScript, Nectar Cloud','screenshot','projects/SDP'],
    }
-
+ 
    const slides =(name)=>{
         console.log("Slides")
         console.log(props.APIData);
@@ -116,9 +117,10 @@ const ReactModal=(props)=>{
         let Slides = [];
     
         Object.keys(props.APIData).map((folder)=>{
-           
-            if(folder==name){
-                console.log('Folderchosen'+folder)
+           console.log('FolderName:'+folder);
+            console.log('Name'+name);
+            if(folder.trim().toLocaleLowerCase()==name.trim().toLocaleLowerCase()){
+               // console.log('Folderchosen'+folder)
                 let folderitems = [];
                 folderitems.key=folder;
                 let Imagenames = props.APIData[folder];
@@ -127,6 +129,7 @@ const ReactModal=(props)=>{
                     value = 'http://localhost:3002/projects/'+folder+'/'+value;
                     //folderitems.push(value);
                     Slides.push(value)
+                    console.log(value);
                 })
                 //Slides.push(folderitems);
             }
@@ -139,10 +142,8 @@ const ReactModal=(props)=>{
 
    let slides_continue =()=>{
        let sld_htm = [];
-
        slides(returndat()).forEach((value,index)=>(
-
-        sld_htm.push(<img key={index+1} src ={value}/>)
+        sld_htm.push(<img key={index+1} src ={value} style={{width:'1200px',height:'600px'}}/>)
    ))
         return sld_htm;
    }
@@ -163,6 +164,17 @@ const ReactModal=(props)=>{
         return TitleName;
    }
 
+   let projectdesc =()=>{
+       let Project_desc = git.map((val)=>{
+            Data.foreach((descr_id)=>{
+                if (val.id= descr_id){
+                    return descr_id;
+                }
+            })
+       })
+
+   }
+
 
 
    let head = "http://localhost:3002/folder.png";
@@ -171,7 +183,7 @@ const ReactModal=(props)=>{
         <div>
             <div>{slides}</div>
             {(obj==undefined)?null:
-            <Modal isOpen={props.triggerevent}>
+            <Modal isOpen={props.triggerevent} className="modal-lg">
 
                 <ModalHeader className= "d-block">
                     <h3 style={{margin:0,float:'left'}}>{returndat()}</h3> 
@@ -181,12 +193,11 @@ const ReactModal=(props)=>{
 
 
                 <ModalBody>
-                   <Carousel slides ={slides_continue()}>
-                       {/* <img src="http://localhost:3002/folder.png"/>
-                       <img src="http://localhost:3002/folder.png"/>
-                       <img src="http://localhost:3002/folder.png"/> */}
-                   </Carousel>
-
+                   <Carousel slidesPerPage={1} slides ={slides_continue()} arrows clicktochange />
+                    <h5>
+                        Project Description
+                        {projectdesc()}
+                    </h5>
                 </ModalBody>
 
             </Modal>}
@@ -375,6 +386,11 @@ class Home extends Component{
                     
                     {/*-----About Page -----*/}
                     
+                    <Carousel>
+                        <img src ="http://localhost:3002/projects/IoT/IOT1.jpg"/>
+                        <img src ="http://localhost:3002/projects/IoT/IOT3.jpg"/>
+                        <img src ="http://localhost:3002/projects/IoT/IOT2.jpg"/>
+                    </Carousel>
             </Container>
             
 
