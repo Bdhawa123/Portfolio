@@ -2,7 +2,7 @@ import React,{ Component, useRef, useState, useEffect} from 'react';
 import {Container,Image} from 'react-bootstrap';
 import HomePageCss from '../css/HomePage.module.css';
 import Fade from 'react-reveal/Fade';
-import {Modal, ModalHeader, ModalBody} from 'reactstrap';
+import {Modal, ModalHeader, ModalBody, Button} from 'reactstrap';
 import Carousel, { Dots } from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
 import codeImg from "../resources/program.jpg";
@@ -31,9 +31,9 @@ const GitRepo =(props) =>{
 
     
     return(
-    <div>
+    <div style ={{zIndex:'4'}}>
        {repoList.map((val,index)=>(
-            <div key ={index} style={{display:'inline-block',zIndex:'2'}} >
+            <div key ={index} style={{display:'inline-block',zIndex:'4'}} >
                 <div>
                     <Image src={require("../resources/folder.png")} style={{width:'55%',marginLeft:'5%',cursor:'pointer'}} onClick={()=>{props.openproject(val.id,true)}} />
                 </div>
@@ -143,7 +143,7 @@ const ReactModal=(props)=>{
    let slides_continue =()=>{
        let sld_htm = [];
        slides(returndat()).forEach((value,index)=>(
-        sld_htm.push(<img key={index+1} src ={value} style={{width:'1200px',height:'600px'}}/>)
+        sld_htm.push(<img key={index+1} src ={value} style={{width:'1100px',height:'400px'}}/>)
    ))
         return sld_htm;
    }
@@ -165,19 +165,26 @@ const ReactModal=(props)=>{
    }
 
    let projectdesc =()=>{
-       let Project_desc = git.map((val)=>{
-            Data.foreach((descr_id)=>{
-                if (val.id= descr_id){
-                    return descr_id;
+       let Project_desc = "";
+         Object.keys(Data).map((item)=>{
+        //console.log(Data[items]);
+            if (item==data){
+                Project_desc= Data[item];
+                console.log(Project_desc[0]);
                 }
             })
-       })
+       return Project_desc
 
    }
 
+   let repolink =()=>{
+    git.map((val,index)=>{
+        if (val.id==data){
+            window.open(val.html_url);
+        }
+     })
+   }
 
-
-   let head = "http://localhost:3002/folder.png";
    
     return(
         <div>
@@ -194,11 +201,21 @@ const ReactModal=(props)=>{
 
                 <ModalBody>
                    <Carousel slidesPerPage={1} slides ={slides_continue()} arrows clicktochange />
-                    <h5>
-                        Project Description
-                        {projectdesc()}
-                    </h5>
+                   <div style={{backgroundColor:'black',color:'White',opacity:'0.75',textAlign:'center'}}> 
+                        <h4>
+                            Project Description
+                        </h4>
+                            {projectdesc()[0]}
+                            <p>
+
+                            </p>
+                        <h6>
+                            {projectdesc()[1]}
+                        </h6>
+                        <Button className="btn btn-primary text-center" onClick={()=>{repolink()}}>GitHub</Button>
+                    </div>
                 </ModalBody>
+                
 
             </Modal>}
         </div>
@@ -256,6 +273,7 @@ class Home extends Component{
         .then((resp)=>resp.json())
         .then((data)=>{
             this.setState({GitHubData:data});                   //fetch data from Github and post it to the state Github Data
+            console.log(data);
         });
     }
 
@@ -318,14 +336,14 @@ class Home extends Component{
              <Container >          
                         <div className={HomePageCss['main_container']} onscroll={this.ScrollHandler}  >
                         
-                            <Fade cascade when ={!this.state.triggerevent} timeout='1500'>
+                            <Fade cascade when ={!this.state.triggerevent} timeout='500'>
                                 <hr className={HomePageCss['hr1']}/>
                             </Fade>    
                     
                             <Image className={HomePageCss['ppic']} onClick={()=>this.clickhandler()} src={require("../resources/meliodas.jpg")} roundedCircle />
                     
 
-                            <Fade bottom when={this.state.triggerevent} timeout='1500' >
+                            <Fade bottom when={this.state.triggerevent} timeout='500' >
 
                                 <div className={HomePageCss['ppic_click_open']} style={(this.state.triggerevent)?{zIndex:3}:{zIndex:0}} >
                                     {/* There should be some content regarding two columns for resumes */}
@@ -368,11 +386,11 @@ class Home extends Component{
                         </div>
                     
 
-                    <div className = "text-center" style={{paddingTop:'20%',marginBottom:'25%'}}>
+                    <div className = "text-center" style={{paddingTop:'20%',marginBottom:'15%'}}>
                         <h3 className ="bold"> Projects</h3>
                         
-                        <div style={{border:'1px solid black'}}>
-                            <GitRepo name={this.state.GitHubData} openproject={this.open_prj_infohandler} val/>
+                        <div style={{border:'1px solid black',zIndex:4}}>
+                            <GitRepo name={this.state.GitHubData} openproject={this.open_prj_infohandler} style={{zIndex:4}}/>
                         </div>
 
                     </div>
@@ -385,12 +403,17 @@ class Home extends Component{
 
                     
                     {/*-----About Page -----*/}
+                    <div style ={{background:'Black',opacity:'0.75',color:'white',marginTop:'5%'}} className="text-center row">
+                            <div className="col-sm-6">
+                                <div className="text-left">Binay Dhawa</div>
+                            </div>
+                            <div className="col-sm-6">
+                                <div className="text-right">2020<br></br>
+                                Created Using ReactJS
+                                </div>
+                            </div>
+                    </div>
                     
-                    <Carousel>
-                        <img src ="http://localhost:3002/projects/IoT/IOT1.jpg"/>
-                        <img src ="http://localhost:3002/projects/IoT/IOT3.jpg"/>
-                        <img src ="http://localhost:3002/projects/IoT/IOT2.jpg"/>
-                    </Carousel>
             </Container>
             
 
