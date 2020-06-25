@@ -1,12 +1,8 @@
-@font-face{/*font family*/
-	font-family:cool_font;
-	src: url('./font/LEVIBRUSH.ttf');
-}
-
 .navigation{
-    list-style-type: none;
-	margin-top:30px;
-    text-align: center;    
+	display: flex;
+	justify-content: center;
+	align-items: center;    
+	padding-top: 1%;
 }
 
 .nav-link{
@@ -17,8 +13,7 @@
 	font-size: 20pt;
     position: center;
     color:black;
-	font-family: cool_font;
-	-webkit-transition:1s
+	-webkit-transition:1s;
 }
 
 .nav-link:hover{
