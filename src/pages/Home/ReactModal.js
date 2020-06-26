@@ -87,8 +87,7 @@ const ReactModal = ({message2modal,triggerevent,openproject,gitData})=>{
                 return images;
 
             }else{
-                console.log('Data does not contain message2modal or first render')
-                null    
+                console.log('Data does not contain message2modal or first render')  
             }
         }else{
             console.log('message2modal false')

@@ -10,8 +10,6 @@ class Home extends Component{
 
     constructor(props){
         super(props);
-        // this.myRef = Rea
-        //this.togglehover= this.togglehover.bind(this);
         this.open_prj_infohandler = this.open_prj_infohandler.bind(this);
     }
 
@@ -19,7 +17,6 @@ class Home extends Component{
         triggerevent:false,
         Scroll:false,
         GitHubData:[],
-        APIData:[],
         open_prj_info:false,
         open_prj_id:""
     }
@@ -33,7 +30,6 @@ class Home extends Component{
     componentDidMount= function() {
         window.addEventListener('scroll', this.handleScroll);
         this.getGitData();                              //get Github data
-        this.getAPIData();
     }
     
     componentWillUnmount= function() {
@@ -99,6 +95,7 @@ class Home extends Component{
     open_prj_infohandler = (id,boolval)=>{
         this.setState({open_prj_info:boolval});
         this.setState({open_prj_id:id});
+
         console.log("Open project handler called");
         console.log(this.state.open_prj_info);
         console.log(id);
@@ -180,7 +177,7 @@ class Home extends Component{
                    
                     <SkillSet/>
                     
-                    <ReactModal message2modal={this.state.open_prj_id} triggerevent={this.state.open_prj_info} APIData ={this.state.APIData} openproject={this.open_prj_infohandler} gitData = {this.state.GitHubData}/>
+                    <ReactModal message2modal={this.state.open_prj_id} triggerevent={this.state.open_prj_info} openproject={this.open_prj_infohandler} gitData = {this.state.GitHubData}/>
                     {/*-----form to accept emails and requests -----*/}
 
                     
