@@ -1,30 +1,31 @@
 {
   "files": {
     "main.css": "/Portfolio/static/css/main.a600c12c.chunk.css",
-    "main.js": "/Portfolio/static/js/main.58d5c91c.chunk.js",
-    "main.js.map": "/Portfolio/static/js/main.58d5c91c.chunk.js.map",
+    "main.js": "/Portfolio/static/js/main.0357cee8.chunk.js",
+    "main.js.map": "/Portfolio/static/js/main.0357cee8.chunk.js.map",
     "runtime-main.js": "/Portfolio/static/js/runtime-main.e440ee5a.js",
     "runtime-main.js.map": "/Portfolio/static/js/runtime-main.e440ee5a.js.map",
     "static/css/2.d2893f41.chunk.css": "/Portfolio/static/css/2.d2893f41.chunk.css",
-    "static/js/2.d9dcc96a.chunk.js": "/Portfolio/static/js/2.d9dcc96a.chunk.js",
-    "static/js/2.d9dcc96a.chunk.js.map": "/Portfolio/static/js/2.d9dcc96a.chunk.js.map",
+    "static/js/2.05985718.chunk.js": "/Portfolio/static/js/2.05985718.chunk.js",
+    "static/js/2.05985718.chunk.js.map": "/Portfolio/static/js/2.05985718.chunk.js.map",
     "index.html": "/Portfolio/index.html",
-    "precache-manifest.f2797410d795320f6094cce0fdd77324.js": "/Portfolio/precache-manifest.f2797410d795320f6094cce0fdd77324.js",
+    "precache-manifest.4d9a18d9446ed038f6d63070afe938cf.js": "/Portfolio/precache-manifest.4d9a18d9446ed038f6d63070afe938cf.js",
     "service-worker.js": "/Portfolio/service-worker.js",
     "static/css/2.d2893f41.chunk.css.map": "/Portfolio/static/css/2.d2893f41.chunk.css.map",
     "static/css/main.a600c12c.chunk.css.map": "/Portfolio/static/css/main.a600c12c.chunk.css.map",
-    "static/js/2.d9dcc96a.chunk.js.LICENSE.txt": "/Portfolio/static/js/2.d9dcc96a.chunk.js.LICENSE.txt",
+    "static/js/2.05985718.chunk.js.LICENSE.txt": "/Portfolio/static/js/2.05985718.chunk.js.LICENSE.txt",
     "static/media/LinkedIn.png": "/Portfolio/static/media/LinkedIn.a99cc024.png",
     "static/media/HomePage.module.css": "/Portfolio/static/media/carbon.09b77350.ttf",
     "static/media/coffee_lover.jpg": "/Portfolio/static/media/coffee_lover.079b4028.jpg",
     "static/media/github_logo.png": "/Portfolio/static/media/github_logo.427b8bc2.png",
-    "static/media/meliodas.jpg": "/Portfolio/static/media/meliodas.b289d2c0.jpg"
+    "static/media/meliodas.jpg": "/Portfolio/static/media/meliodas.b289d2c0.jpg",
+    "static/media/noImage.jpg": "/Portfolio/static/media/noImage.b4870b1c.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.e440ee5a.js",
     "static/css/2.d2893f41.chunk.css",
-    "static/js/2.d9dcc96a.chunk.js",
+    "static/js/2.05985718.chunk.js",
     "static/css/main.a600c12c.chunk.css",
-    "static/js/main.58d5c91c.chunk.js"
+    "static/js/main.0357cee8.chunk.js"
   ]
 }
