@@ -1,5 +1,6 @@
 import React from 'react';
 import {Nav,NavItem, NavLink} from 'reactstrap';
+import {Link,BrowserRouter} from "react-router-dom";
 import "../css/navigation.css";
 
 
@@ -8,9 +9,9 @@ const Navigation = ()=>{
     return(
         <div className='navigation'>
         <Nav>
-            <NavLink className="nav-link" href ="Home">Home</NavLink>
-            <NavLink className="nav-link" href ="About">Blog</NavLink>
-            <NavLink className="nav-link" href ="Photo">Gallery</NavLink>
+            <Link className="nav-link" to ="/">Home</Link>
+            <Link className="nav-link" to ="/About">Blog</Link>
+            <Link className="nav-link" to ="/Photo">Gallery</Link>
         </Nav>
     </div>)
 

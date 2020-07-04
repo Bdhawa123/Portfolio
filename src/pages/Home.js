@@ -1,4 +1,4 @@
-import React,{ Component, useRef, useState, useEffect} from 'react';
+import React,{ Component} from 'react';
 import {Container,Image} from 'react-bootstrap';
 import HomePageCss from '../css/HomePage.module.css';
 import Fade from 'react-reveal/Fade';

@@ -32,16 +32,11 @@ class HeaderComponent extends Component{
             <div style={this.css.BackgroundIMG}>
                 <BrowserRouter>
                     <Navigation/>
+                    
                     <Switch>
-                        <Route path="/about" >
-                            <About/>    
-                        </Route>
-                        <Route path="/Photo" >
-                            <Photo/>
-                        </Route>
-                        <Route  path="/" >    
-                            <Home/>
-                        </Route>
+                        <Route path="/About" comoponent={About}/>
+                        <Route path="/Photo" component={Photo}/>
+                        <Route path="/" exact component={Home} />   
                     </Switch>
                 </BrowserRouter>
               
