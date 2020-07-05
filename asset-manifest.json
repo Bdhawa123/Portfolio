@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/Portfolio/static/css/main.a600c12c.chunk.css",
-    "main.js": "/Portfolio/static/js/main.0357cee8.chunk.js",
-    "main.js.map": "/Portfolio/static/js/main.0357cee8.chunk.js.map",
+    "main.css": "/Portfolio/static/css/main.548a0e87.chunk.css",
+    "main.js": "/Portfolio/static/js/main.9b490320.chunk.js",
+    "main.js.map": "/Portfolio/static/js/main.9b490320.chunk.js.map",
     "runtime-main.js": "/Portfolio/static/js/runtime-main.e440ee5a.js",
     "runtime-main.js.map": "/Portfolio/static/js/runtime-main.e440ee5a.js.map",
     "static/css/2.d2893f41.chunk.css": "/Portfolio/static/css/2.d2893f41.chunk.css",
-    "static/js/2.05985718.chunk.js": "/Portfolio/static/js/2.05985718.chunk.js",
-    "static/js/2.05985718.chunk.js.map": "/Portfolio/static/js/2.05985718.chunk.js.map",
+    "static/js/2.e68f8831.chunk.js": "/Portfolio/static/js/2.e68f8831.chunk.js",
+    "static/js/2.e68f8831.chunk.js.map": "/Portfolio/static/js/2.e68f8831.chunk.js.map",
     "index.html": "/Portfolio/index.html",
-    "precache-manifest.4d9a18d9446ed038f6d63070afe938cf.js": "/Portfolio/precache-manifest.4d9a18d9446ed038f6d63070afe938cf.js",
+    "precache-manifest.52ce755d612c11b483f1be2412cca7db.js": "/Portfolio/precache-manifest.52ce755d612c11b483f1be2412cca7db.js",
     "service-worker.js": "/Portfolio/service-worker.js",
     "static/css/2.d2893f41.chunk.css.map": "/Portfolio/static/css/2.d2893f41.chunk.css.map",
-    "static/css/main.a600c12c.chunk.css.map": "/Portfolio/static/css/main.a600c12c.chunk.css.map",
-    "static/js/2.05985718.chunk.js.LICENSE.txt": "/Portfolio/static/js/2.05985718.chunk.js.LICENSE.txt",
+    "static/css/main.548a0e87.chunk.css.map": "/Portfolio/static/css/main.548a0e87.chunk.css.map",
+    "static/js/2.e68f8831.chunk.js.LICENSE.txt": "/Portfolio/static/js/2.e68f8831.chunk.js.LICENSE.txt",
     "static/media/LinkedIn.png": "/Portfolio/static/media/LinkedIn.a99cc024.png",
     "static/media/HomePage.module.css": "/Portfolio/static/media/carbon.09b77350.ttf",
     "static/media/coffee_lover.jpg": "/Portfolio/static/media/coffee_lover.079b4028.jpg",
@@ -24,8 +24,8 @@
   "entrypoints": [
     "static/js/runtime-main.e440ee5a.js",
     "static/css/2.d2893f41.chunk.css",
-    "static/js/2.05985718.chunk.js",
-    "static/css/main.a600c12c.chunk.css",
-    "static/js/main.0357cee8.chunk.js"
+    "static/js/2.e68f8831.chunk.js",
+    "static/css/main.548a0e87.chunk.css",
+    "static/js/main.9b490320.chunk.js"
   ]
 }
