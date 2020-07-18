@@ -10,13 +10,13 @@
 	padding: 50px;
 	padding-top: 0;
 	padding-bottom:0;
-	font-size: 20pt;
+	font-size: 4.5vh;
     position: center;
     color:black;
 	-webkit-transition:1s;
 }
 
 .nav-link:hover{
-	font-size: 30pt;
+	font-size: 6vh;
 	color: black;
 }

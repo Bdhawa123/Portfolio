@@ -34,9 +34,11 @@ class HeaderComponent extends Component{
                     <Navigation/>
                     
                     <Switch>
-                        <Route path="/About" comoponent={About}/>
-                        <Route path="/Photo" component={Photo}/>
-                        <Route path="/" exact component={Home} />   
+                       
+                        {/* <Route path= "/Portfolio" exact component={Home}/>    */}
+                        <Route path="/About" exact comoponent={About}/>
+                        <Route path="/Photo" exact component={Photo}/>
+                        <Route path="/" component={Home} />
                     </Switch>
                 </BrowserRouter>
               

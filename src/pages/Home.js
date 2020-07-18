@@ -5,7 +5,7 @@ import Fade from 'react-reveal/Fade';
 import GitRepo from './Home/GitRepo'
 import SkillSet from './Home/SkillSet'
 import ReactModal from './Home/ReactModal';
-
+import AboutCard from './Home/aboutCard';
 class Home extends Component{
 
     constructor(props){
@@ -119,14 +119,17 @@ class Home extends Component{
                                 <hr className={HomePageCss['hr1']}/>
                             </Fade>    
                     
-                            <Image className={HomePageCss['ppic']} onClick={()=>this.clickhandler()} src={require("../resources/meliodas.jpg")} roundedCircle />
+                            <img className={HomePageCss['ppic']} onClick={()=>this.clickhandler()} src={require("../resources/headshot.jpg")} />
                     
 
                             <Fade bottom when={this.state.triggerevent} timeout='500' >
 
                                 <div className={HomePageCss['ppic_click_open']} style={(this.state.triggerevent)?{zIndex:3}:{zIndex:0}} >
                                     {/* There should be some content regarding two columns for resumes */}
-                                    <div className="row">
+                                    <Container>
+                                        <AboutCard/>
+                                    </Container>
+                                    {/* <div className="row">
 
                                         <div className="col-lg-6 col-md-6 col-12-xs col-12-s" style={{left:'25px'}}  >
                                             <div className="Red text-left" style={{backgroundColor:'#8b949e',opacity:'0.9',color:'light-blue',paddingTop:'11px'}}>
@@ -152,7 +155,7 @@ class Home extends Component{
                                                 <h2>A BIT ABOUT MYSELF</h2> 
                                                 <span>I'm awesome !!!</span>  
                                             </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </Fade>  
                         </div>
@@ -184,7 +187,10 @@ class Home extends Component{
                     {/*-----About Page -----*/}
                     <div style ={{background:'Black',opacity:'0.75',color:'white',marginTop:'5%'}} className="text-center row">
                             <div className="col-sm-6">
-                                <div className="text-left">Binay Dhawa</div>
+                                <div className="text-left">Binay Dhawa<br></br>
+                                binaydhawa@outlook.com
+                                </div>
+    
                             </div>
                             <div className="col-sm-6">
                                 <div className="text-right">2020<br></br>
@@ -192,10 +198,11 @@ class Home extends Component{
                                 </div>
                             </div>
                     </div>
+                         
+              
                     
             </Container>
-            
-
+       
         );
     }
 }

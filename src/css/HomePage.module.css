@@ -22,19 +22,25 @@
 .ppic{
    
     position: relative;
+    filter: brightness(80%);
     width: 14%;
+    height:10em;
+    border-radius: 50%;
     margin: 10px solid;
     z-index: 2;
-    -webkit-transition: width 1s
+    opacity: 0.75;
+    -webkit-transition: width 1s, height 1s, opacity 1s;
 }
 
 .ppic:hover
 {
-	width:17%;
+    width:17%;
+    height: 11.5em;
 	position: relative;
     cursor: pointer;
     border: none;
     animation-delay: 2s;
+    opacity: 1;
 }
 
 
@@ -56,7 +62,8 @@
 
 .ppic_click_open{
     position: absolute;
-    display: block;
+    display: flex;
+    align-items: center;
     margin-left: auto;
     margin-right: auto;
     top: 67%;
@@ -65,8 +72,9 @@
     right: 0%;
 	background-color: #202013;
     color: white;
-    height:290%;
-    z-index: 1;
+    height:100%;
+    z-index: 1;     
+    border-radius: 0.5em;
 
 }
 
